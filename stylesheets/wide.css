@@ -1,5 +1,5 @@
-body {background: #999;}
-#page  {background: #eee;}
+body {background: #909;}
+#page  {background: #1ee;}
 #page:after {content: "Wide Layout";}
 
 nav {float: left; width:15%;}
