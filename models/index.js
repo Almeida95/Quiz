@@ -36,8 +36,8 @@ sequelize
 		.then(function (c){
 			if (c===0){ // la tabla se inicializa si esta vacía
 		 	   return Quiz
-		  	    .bulkcreate([{ question: 'Capital de Italia', answer: 'Roma'},
-		  	    			  question: 'Capital de Portugal', answer: 'Lisboa'}])
+		  	    .bulkcreate([{ question:'Capital de Italia', answer: 'Roma'},
+		  	    			  {question:'Capital de Portugal', answer: 'Lisboa'}])
 		   	    .then(function(){
 		    	   console.log('Base de datos inicializada con datos');
 		    });
