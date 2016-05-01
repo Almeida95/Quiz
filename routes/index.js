@@ -7,6 +7,13 @@ var quizController = require('../controllers/quiz_controller');
 router.get('/', function(req, res, next) {
   res.render('index');
 });
+//GET mi pagina
+router.get('/author', function(req, res, next) {
+  res.render('author',{title:'autor'});
+});
+
+//Autoload de rutas que usen :quizId
+router.param('quizId', quizController.load);  //autoload:quizId
 
 //Definicion de rutas de /quizzes
 
