@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var partials = require('express-partials');
 var flash= require('express-flash');
+var methodOverride = require('methodOverride');
 
 var routes = require('./routes/index');
 
@@ -28,11 +29,14 @@ app.use(cookieParser());
 app.use(session({secret: "Quiz 2016",
                  resave:false,
                  saveUninitialized: true}));
+
+app.use(methodOverride('_method', {methods: ["POST", "GET"]}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(partials());
 app.use(flash());
 app.use('/', routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
