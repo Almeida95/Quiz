@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var partials = require('express-partials');
 var flash= require('express-flash');
-var methodOverride = require('methodOverride');
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 
