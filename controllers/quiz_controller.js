@@ -17,15 +17,27 @@ exports.load = function(req, res, next, quizId) {
 
 // GET /quizzes/
 exports.index = function(req, res, next){
-	models.Quiz.findAll()//Busca la primera pregunta en la tabla Quiz,  si la busqueda findOne() tiene exito se ejecutara la funcio de then
-	.then(function(quizzes){
-			res.render('quizzes/index.ejs', {quizzes: quizzes});
-	})
-	.catch(function(error) {
-	next(error);
-	});  //Esto por sio hubiere errores
-};
-
+	if(req.query.search){
+    var search =req.query.search.split(" ");
+    search ="%" + search.join("%") + "%";
+    models.Quiz.findAll({
+      where: ["question like ?", search]
+    })
+    .then(function(quizzes){
+      res.render("quizzes/index.ejs", {quizzes:quizzes});
+    })
+    .catch(function(error){
+      next(error);
+    });}
+    else{
+      models.Quiz.findAll().then(function(quizzes){
+        res.render("quizzes/index.ejs",{quizzes:quizzes});
+      })
+      .catch(function(error){
+        next(error);
+      });
+    }
+  };
 //GET /quizzes/:id
 exports.show = function(req, res, next) {
  	models.Quiz.findById(req.params.quizId)
@@ -57,11 +69,13 @@ exports.check = function(req, res, next) {
 
   //GET /quizzes/new
 
+
   exports.new = function(req,res,next){
   	var quiz=models.Quiz.build({question: "", answer: ""});
   	res.render('quizzes/new', {quiz:quiz});
   };
 
+ 
   // POST /quizzes/create
 exports.create = function(req, res, next) {
   var quiz = models.Quiz.build({ question: req.body.quiz.question, 

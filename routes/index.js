@@ -25,4 +25,5 @@ router.post('/quizzes',                     quizController.create);
 router.get('/quizzes/:quizId(\\d+)/edit',   quizController.edit);
 router.put('/quizzes/:quizId(\\d+)',        quizController.update);
 router.delete('/quizzes/:quizId(\\d+)',        quizController.destroy);
+//router.get('/quizzes(\\w)',              quizController.search);  //****
 module.exports = router;
