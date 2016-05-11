@@ -29,6 +29,13 @@ app.use(cookieParser());
 app.use(session({secret: "Quiz 2016",
                  resave:false,
                  saveUninitialized: true}));
+//Helper dinámico:
+app.use(function(req,res,next){
+  //Hacer visible req.session en las vistas
+  res.locals.session=req.session;
+
+  next();
+});
 
 app.use(methodOverride('_method', {methods: ["POST", "GET"]}));
 app.use(express.static(path.join(__dirname, 'public')));
