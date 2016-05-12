@@ -117,7 +117,7 @@ exports.destroy = function(req, res, next) {
             //Borrando usuario logeado.
             if(req.session.user && req.session.user.id ===req.user.id){
             //Borra la sesio y redirige a /
-                delete.req.session.user;
+                delete req.session.user;
             }
             req.flash('success', 'Usuario eliminado con éxito.');
             res.redirect('/');

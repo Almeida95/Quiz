@@ -1,4 +1,6 @@
 var userController = require('./user_controller');
+var models = require('../models');
+var url = require('url');
 var authenticate = function(login,password){
     return models.User.findOne({where: {username:login}})
          .then(function(user){
@@ -38,7 +40,7 @@ exports.create = function(req, res, next) {
 	        res.redirect(redir); // redirección a la raiz
 		}
         else {
-            req.flash)'error', 'La autenticación ha fallado.Reintentelo.';
+            req.flash('error', 'La autenticación ha fallado.Reintentelo.');
             res.redirect("/session?redir="+redir);
         }
     })
