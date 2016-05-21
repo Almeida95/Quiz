@@ -26,9 +26,9 @@
     "method-override": "^2.3.5",
     "morgan": "~1.6.1",
     "pg": "^4.4.6",
-    "sequelize-cli": "^2.3.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.19.3",
+    "sequelize-cli": "^2.3.1",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {

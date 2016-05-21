@@ -11,10 +11,12 @@ if(!process.env.DATABASE_URL)	{
 	storage = 'quiz.sqlite';
 } else {
 	url = process.env.DATABASE_URL;
-	storage = process.env.DATABASE_STORAGE || '';
+	storage = process.env.DATABASE_STORAGE || "";
 }
 
-var sequelize = new Sequelize(url,{storage: storage,omitNull: true});
+var sequelize = new Sequelize(url,
+								{storage: storage,
+									omitNull: true});
 
 //Importar la definicion de la tabla quiz de quiz.js
 

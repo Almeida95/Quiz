@@ -16,28 +16,27 @@ exports.load = function(req, res, next, quizId) {
  };
 
 // GET /quizzes/
-exports.index = function(req, res, next){
-	if(req.query.search){
-    var search =req.query.search.split(" ");
-    search ="%" + search.join("%") + "%";
-    models.Quiz.findAll({
-      where: ["question like ?", search]
-    })
-    .then(function(quizzes){
-      res.render("quizzes/index.ejs", {quizzes:quizzes});
-    })
-    .catch(function(error){
-      next(error);
-    });}
-    else{
-      models.Quiz.findAll().then(function(quizzes){
-        res.render("quizzes/index.ejs",{quizzes:quizzes});
-      })
-      .catch(function(error){
-        next(error);
-      });
-    }
-  };
+exports.index = function(req, res, next) {
+ if (req.query.search){
+  var busca = req.query.search.split(' ');
+  busca = '%' + busca.join('%') + '%';
+  models
+  .Quiz
+  .findAll({where: [ 'question like ?' , busca]})
+  .then(function(quizzes){
+   res.render('quizzes/index.ejs', { quizzes: quizzes});
+  })
+  .catch(function(error) {next(error);});
+ } else {
+ models
+ .Quiz
+ .findAll()
+ .then(function(quizzes) {
+  res.render('quizzes/index.ejs', { quizzes: quizzes});
+ })
+ .catch(function(error) { next(error); });
+ }
+};
 //GET /quizzes/:id
 exports.show = function(req, res, next) {
  	models.Quiz.findById(req.params.quizId)
